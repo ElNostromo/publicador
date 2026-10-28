@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Autorización recibida · Publicador CienciaNoEspera</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="estilo.css">
+<style>
+  .caja {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 4px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  #code {
+    font-family: 'IBM Plex Mono', Consolas, monospace;
+    font-size: 15px;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--borde);
+    border-radius: 3px;
+    background: var(--bg);
+    color: var(--fg);
+    overflow-wrap: anywhere;
+  }
+  button {
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 11px 20px;
+    margin-top: 12px;
+    border: 0;
+    border-radius: 3px;
+    background: var(--acento);
+    color: var(--bg);
+    cursor: pointer;
+  }
+  button:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+  #aviso { margin-top: 10px; font-size: 14.5px; color: var(--acento); min-height: 1.4em; }
+  .error { color: #c0392b; font-weight: 600; }
+  @media (prefers-color-scheme: dark) { .error { color: #ff8a7a; } }
+</style>
+</head>
+<body>
+<div class="envoltura">
+
+<header>
+  <div class="etiqueta">Publicador CienciaNoEspera</div>
+  <h1 id="titulo">Autorización recibida</h1>
+  <p class="bajada" id="bajada">
+    Copia el código de abajo y pégalo en la terminal donde te lo están pidiendo. Es de un
+    solo uso y caduca en unos minutos.
+  </p>
+</header>
+
+<main>
+  <section>
+    <div class="caja">
+      <input id="code" readonly value="(leyendo…)" aria-label="Código de autorización">
+      <button id="copiar" type="button">Copiar el código</button>
+      <div id="aviso" role="status"></div>
+    </div>
+    <p class="como">
+      Esta página no guarda ni envía el código a ninguna parte. Solo lo muestra para que lo
+      copies. El intercambio por el token ocurre en el computador del creador.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <p>
+    Página de retorno de la autorización. <a href="index.html">Volver a la ficha de la herramienta</a>.
+  </p>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var p = new URLSearchParams(location.search);
+  var code = p.get('code');
+  var err = p.get('error_description') || p.get('error');
+  var campo = document.getElementById('code');
+  var aviso = document.getElementById('aviso');
+
+  if (err) {
+    document.getElementById('titulo').textContent = 'La autorización falló';
+    document.getElementById('bajada').innerHTML = '<span class="error">' + err.replace(/[<>&]/g, '') + '</span>';
+    campo.value = '';
+    return;
+  }
+  if (!code) {
+    document.getElementById('titulo').textContent = 'No llegó ningún código';
+    document.getElementById('bajada').textContent =
+      'Esta página solo sirve como retorno de la autorización. Abre el enlace que te dio la terminal.';
+    campo.value = '';
+    return;
+  }
+  campo.value = code;
+
+  document.getElementById('copiar').addEventListener('click', function () {
+    function ok() { aviso.textContent = 'Copiado. Pégalo en la terminal.'; }
+    try {
+      navigator.clipboard.writeText(campo.value).then(ok, seleccionar);
+    } catch (e) { seleccionar(); }
+    function seleccionar() {
+      campo.focus(); campo.select();
+      aviso.textContent = 'Selecciónalo y cópialo con Ctrl+C.';
+    }
+  });
+})();
+</script>
+</body>
+</html>
