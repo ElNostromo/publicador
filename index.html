@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Publicador CienciaNoEspera</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<div class="envoltura">
+
+<nav>
+  <a href="index.html" aria-current="page">La herramienta</a>
+  <a href="privacidad.html">Política de privacidad</a>
+  <a href="terminos.html">Términos de uso</a>
+</nav>
+
+<header>
+  <div class="etiqueta">Herramienta interna de publicación</div>
+  <h1>Publicador CienciaNoEspera</h1>
+  <p class="bajada">
+    Esta herramienta publica los videos del canal CienciaNoEspera en las cuentas propias
+    del canal: TikTok (@ciencianoespera), YouTube, Instagram, Facebook y Threads. La usa
+    una sola persona, que es la dueña de esas cuentas. No tiene usuarios ni recoge datos
+    de terceros.
+  </p>
+</header>
+
+<main>
+
+<section>
+  <dl class="ficha">
+    <div><dt>Operador</dt><dd>Canal CienciaNoEspera</dd></div>
+    <div><dt>Cuenta de TikTok</dt><dd>@ciencianoespera</dd></div>
+    <div><dt>Usuarios de la app</dt><dd>1 (el dueño de la cuenta)</dd></div>
+    <div><dt>Contacto</dt><dd>biohackercl@gmail.com</dd></div>
+  </dl>
+</section>
+
+<section>
+  <h2>Qué hace</h2>
+  <p>
+    CienciaNoEspera publica videos cortos sobre salud y ciencia, cada uno citando el
+    estudio en que se basa, con su institución y su año. Los videos se producen completos
+    en el computador del creador: guion, narración, animaciones y render.
+  </p>
+  <p>
+    Esta herramienta se encarga del último paso. Lee un calendario local de publicaciones
+    y, a la hora programada de cada una, entrega el video a cada red donde el canal tiene
+    cuenta.
+  </p>
+  <p>
+    No hay sitio público, ni registro de usuarios, ni panel para terceros. Es un programa
+    de línea de comandos que una tarea del sistema dispara cada media hora. Reemplaza una
+    herramienta de pago que hacía exactamente esto mismo.
+  </p>
+</section>
+
+<section>
+  <h2>Permisos que pide a TikTok, y para qué</h2>
+  <div class="permisos">
+    <div class="permiso">
+      <div class="nombre">user.info.basic</div>
+      <p>
+        Confirmar que el token corresponde a la cuenta correcta antes de subir algo. Se usa
+        solo para mostrar el nombre de la cuenta al revisar la conexión.
+      </p>
+    </div>
+    <div class="permiso">
+      <div class="nombre">video.upload</div>
+      <p>
+        Dejar el video en la bandeja de borradores de la propia cuenta. El creador abre la
+        aplicación de TikTok, revisa el borrador, escribe el texto y publica a mano. Es el
+        permiso que la herramienta usa hoy.
+      </p>
+    </div>
+    <div class="permiso">
+      <div class="nombre">video.publish</div>
+      <p>
+        Publicar directamente a la hora programada, con el texto y los ajustes de privacidad
+        que ya están definidos en el calendario, sin paso manual.
+      </p>
+    </div>
+  </div>
+  <p>
+    La herramienta no lee videos de otras cuentas, no consulta métricas de terceros, no
+    busca contenido en TikTok y no publica en nombre de nadie más.
+  </p>
+</section>
+
+<section>
+  <h2>Cómo funciona, paso a paso</h2>
+  <ol class="flujo">
+    <li><div>
+      <div class="que">El creador autoriza la cuenta una vez</div>
+      <div class="como">Inicio de sesión de TikTok en el navegador. El token queda guardado solo en el disco del computador, en un archivo excluido del control de versiones.</div>
+    </div></li>
+    <li><div>
+      <div class="que">El video se produce y se aprueba antes de entrar al calendario</div>
+      <div class="como">Cada video se revisa completo antes de programarlo. El calendario guarda la ruta del archivo, el texto, la fecha y la hora.</div>
+    </div></li>
+    <li><div>
+      <div class="que">La tarea del sistema revisa el calendario cada 30 minutos</div>
+      <div class="como">Si no hay nada para esa hora, no hace nada y termina. Un video al día, a la misma hora de siempre.</div>
+    </div></li>
+    <li><div>
+      <div class="que">El archivo se sube en trozos a TikTok</div>
+      <div class="como">Subida por partes al punto de carga que entrega la API, con el video que ya está en el disco. Nada se descarga de internet en este paso.</div>
+    </div></li>
+    <li><div>
+      <div class="que">Queda anotado para no repetirlo</div>
+      <div class="como">Lo que ya salió se registra con su fecha y su identificador. Si la tarea vuelve a correr, salta ese video. Nunca se publica dos veces lo mismo.</div>
+    </div></li>
+    <li><div>
+      <div class="que">Si algo falla, avisa al creador</div>
+      <div class="como">Un mensaje de aviso con el error exacto. Sin reintentos automáticos cuando la respuesta de TikTok es ambigua, para no arriesgar un duplicado.</div>
+    </div></li>
+  </ol>
+</section>
+
+<section>
+  <h2>Contenido que se publica</h2>
+  <p>
+    Videos verticales de hasta 35 segundos, producidos para el canal. Cada uno expone un
+    hallazgo científico y nombra el estudio, la institución y el año en pantalla.
+  </p>
+  <ul>
+    <li>Narración y guion originales, escritos para el canal.</li>
+    <li>Material de archivo con licencia de uso y animaciones propias.</li>
+    <li>Ilustración científica de bibliotecas abiertas, con su atribución en la descripción.</li>
+    <li>Música instrumental generada para el canal o de biblioteca con licencia.</li>
+  </ul>
+  <p>
+    No se publica contenido de terceros sin licencia, ni material reciclado de otras
+    cuentas, ni nada generado de forma masiva. Es un video por día, revisado uno por uno.
+  </p>
+</section>
+
+</main>
+
+<footer>
+  <p>
+    Esta página existe para documentar la herramienta ante los equipos de revisión de
+    TikTok y de Meta. No vende nada y no recoge ningún dato de quien la visita.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>

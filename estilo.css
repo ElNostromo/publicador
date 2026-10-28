@@ -1,0 +1,153 @@
+:root {
+  --bg: #f7f8f8;
+  --superficie: #ffffff;
+  --borde: #d9e0df;
+  --fg: #121716;
+  --fg-tenue: #5a6765;
+  --acento: #0f7d6c;
+  --acento-suave: #e4f2ef;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0f0e;
+    --superficie: #141a19;
+    --borde: #27322f;
+    --fg: #e8efed;
+    --fg-tenue: #93a3a0;
+    --acento: #48e6c8;
+    --acento-suave: #13302b;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  padding: 0 max(16px, env(safe-area-inset-left, 0px)) 72px;
+}
+.envoltura { max-width: 860px; margin: 0 auto; }
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-block: 22px;
+  border-bottom: 1px solid var(--borde);
+  font-size: 14.5px;
+}
+nav a { color: var(--fg-tenue); text-decoration: none; }
+nav a:hover, nav a[aria-current] { color: var(--acento); }
+nav a[aria-current] { font-weight: 600; }
+header { padding-block: 44px 28px; border-bottom: 1px solid var(--borde); }
+.etiqueta {
+  font-family: 'IBM Plex Mono', Consolas, monospace;
+  font-size: 11.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--acento);
+}
+h1 {
+  font-size: clamp(27px, 5vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin: 10px 0 0;
+  text-wrap: balance;
+}
+.bajada { max-width: 62ch; font-size: 17px; color: var(--fg-tenue); margin: 14px 0 0; }
+.fecha {
+  font-family: 'IBM Plex Mono', Consolas, monospace;
+  font-size: 11.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--fg-tenue);
+  margin-top: 8px;
+}
+section { padding-block: 34px; border-bottom: 1px solid var(--borde); }
+section:last-of-type { border-bottom: 0; }
+h2 { font-size: 22px; letter-spacing: -.01em; margin: 0 0 4px; text-wrap: balance; }
+h3 { font-size: 16px; font-weight: 600; margin: 26px 0 2px; }
+p, li { max-width: 68ch; }
+p { margin: 12px 0; }
+ul, ol { padding-left: 20px; margin: 12px 0; }
+li { margin: 6px 0; }
+code {
+  font-family: 'IBM Plex Mono', Consolas, monospace;
+  font-size: .88em;
+  background: var(--acento-suave);
+  padding: 1.5px 5px;
+  border-radius: 3px;
+  overflow-wrap: anywhere;
+}
+a { color: var(--acento); text-underline-offset: 2px; }
+.permisos, .ficha {
+  display: grid;
+  gap: 1px;
+  background: var(--borde);
+  border: 1px solid var(--borde);
+  border-radius: 3px;
+  margin: 18px 0;
+  overflow: hidden;
+}
+.ficha { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.permiso, .ficha > div { background: var(--superficie); padding: 15px 17px; min-width: 0; }
+.permiso .nombre {
+  font-family: 'IBM Plex Mono', Consolas, monospace;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--acento);
+  overflow-wrap: anywhere;
+}
+.permiso p { margin: 5px 0 0; font-size: 15px; color: var(--fg-tenue); max-width: 64ch; }
+.ficha dt {
+  font-family: 'IBM Plex Mono', Consolas, monospace;
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--fg-tenue);
+  margin: 0;
+}
+.ficha dd { margin: 5px 0 0; font-size: 15px; font-weight: 600; overflow-wrap: anywhere; }
+.tabla-envoltura { overflow-x: auto; margin: 18px 0; }
+table { border-collapse: collapse; font-size: 15px; min-width: 460px; }
+th, td { text-align: left; padding: 10px 16px 10px 0; border-bottom: 1px solid var(--borde); vertical-align: top; }
+th {
+  font-family: 'IBM Plex Mono', Consolas, monospace;
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--fg-tenue);
+  font-weight: 400;
+}
+ol.flujo { counter-reset: paso; list-style: none; padding: 0; }
+ol.flujo li {
+  counter-increment: paso;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 14px;
+  align-items: start;
+  max-width: 72ch;
+}
+ol.flujo li::before {
+  content: counter(paso);
+  font-family: 'IBM Plex Mono', Consolas, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--acento);
+  background: var(--acento-suave);
+  border-radius: 3px;
+  text-align: center;
+  padding: 4px 0;
+  line-height: 1.5;
+}
+.que { font-weight: 600; }
+.como { color: var(--fg-tenue); font-size: 15px; }
+footer {
+  padding-block: 30px 0;
+  border-top: 1px solid var(--borde);
+  color: var(--fg-tenue);
+  font-size: 14.5px;
+}
+footer p { max-width: 70ch; }
