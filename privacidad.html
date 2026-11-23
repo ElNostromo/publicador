@@ -20,11 +20,11 @@
 <header>
   <div class="etiqueta">Publicador CienciaNoEspera</div>
   <h1>Política de privacidad</h1>
-  <p class="fecha">Vigente desde el 28 de octubre de 2026</p>
+  <p class="fecha">Vigente desde el 28 de octubre de 2026 · actualizada el 23 de noviembre de 2026</p>
   <p class="bajada">
-    Esta herramienta publica los videos del canal CienciaNoEspera en las cuentas propias
-    del canal. La usa una sola persona, que es la dueña de esas cuentas. No tiene usuarios,
-    ni registro, ni base de datos de personas.
+    Esta herramienta publica los videos y los textos del canal CienciaNoEspera en las cuentas
+    propias del canal (TikTok, Facebook, Instagram, Threads y YouTube). La usa una sola persona,
+    que es la dueña de esas cuentas. No tiene usuarios, ni registro, ni base de datos de personas.
   </p>
 </header>
 
@@ -41,7 +41,7 @@
         <tr>
           <td>Token de acceso y de refresco de TikTok</td>
           <td>Autorizar la subida del video</td>
-          <td>Archivo local en el computador del creador</td>
+          <td>Archivo local en el computador del creador y secreto cifrado del repositorio privado (ver más abajo)</td>
         </tr>
         <tr>
           <td>Identificador de la cuenta (<code>open_id</code>)</td>
@@ -49,31 +49,74 @@
           <td>El mismo archivo local</td>
         </tr>
         <tr>
+          <td>Token de acceso de la Página de Facebook y de la cuenta de Instagram</td>
+          <td>Autorizar la publicación en esas cuentas propias</td>
+          <td>Archivo local y secreto cifrado del repositorio privado</td>
+        </tr>
+        <tr>
+          <td>Token de acceso de Threads</td>
+          <td>Autorizar la publicación en esa cuenta propia</td>
+          <td>Archivo local y secreto cifrado del repositorio privado</td>
+        </tr>
+        <tr>
+          <td>Identificadores de la Página de Facebook y de la cuenta de Instagram</td>
+          <td>Publicar en la cuenta correcta</td>
+          <td>Los mismos archivos locales</td>
+        </tr>
+        <tr>
           <td>Nombre público de la cuenta</td>
           <td>Mostrarlo al revisar la conexión</td>
           <td>No se guarda, se consulta y se descarta</td>
         </tr>
         <tr>
-          <td>Identificador de cada subida</td>
-          <td>No publicar dos veces el mismo video</td>
-          <td>Registro local de publicaciones</td>
+          <td>Identificador de cada subida o publicación</td>
+          <td>No publicar dos veces el mismo contenido</td>
+          <td>Registro de publicaciones, en el computador del creador y en el repositorio privado</td>
         </tr>
       </tbody>
     </table>
   </div>
   <p>
-    Los mismos criterios se aplican a las credenciales de las otras redes donde publica el
-    canal: viven en archivos locales y no salen del computador.
+    Las credenciales de las demás redes donde publica el canal siguen los mismos criterios.
+    Se guardan en archivos locales del computador del creador y, para poder publicar a la hora
+    programada con el computador apagado, también como secretos cifrados de un repositorio
+    privado de GitHub que ejecuta la publicación (GitHub Actions). Esos secretos no se muestran
+    en los registros de ejecución y solo los puede leer el dueño del repositorio.
+  </p>
+</section>
+
+<section>
+  <h2>Facebook, Instagram y Threads (Meta)</h2>
+  <p>
+    La herramienta usa las API oficiales de Meta (Graph API, API de Instagram y API de Threads)
+    para publicar videos y textos del canal en la Página de Facebook, la cuenta de Instagram y
+    la cuenta de Threads del propio creador. Solo opera sobre esas cuentas, de las que la misma
+    persona es dueña y administradora. No hay otros usuarios.
+  </p>
+  <p>
+    Permisos que se usan: publicar contenido en la Página, leer sus datos básicos, publicar
+    contenido en Instagram y publicar contenido y respuestas en Threads. El acceso de
+    Instagram incluye por configuración el permiso de mensajes, pero la herramienta no lo
+    usa: no lee mensajes, ni comentarios, ni datos de seguidores u otras personas.
+  </p>
+  <h3>Otros servicios que tocan el contenido</h3>
+  <ul>
+    <li><strong>Google Drive</strong> guarda los archivos de video y las imágenes para que las redes los descarguen al publicar. Son contenidos propios del canal.</li>
+    <li><strong>GitHub</strong> ejecuta el proceso de publicación y guarda el registro de lo ya publicado.</li>
+    <li><strong>Telegram</strong> envía un aviso al creador cuando una publicación falla. El aviso no contiene datos de otras personas.</li>
+  </ul>
+  <p>
+    Ninguno de estos servicios recibe datos de otras personas, porque la herramienta no los recoge.
   </p>
 </section>
 
 <section>
   <h2>Qué no se hace</h2>
   <ul>
-    <li>No se recogen datos de otras personas ni de otras cuentas de TikTok.</li>
-    <li>No se comparten, venden ni ceden datos a nadie.</li>
+    <li>No se recogen datos de otras personas ni de otras cuentas, en ninguna de las redes.</li>
+    <li>No se comparten, venden ni ceden datos a nadie. Los únicos servicios externos que intervienen son los técnicos descritos arriba (GitHub, Google Drive y Telegram).</li>
     <li>No hay analítica de terceros, ni cookies, ni rastreo. Esta página no recoge nada de quien la visita.</li>
-    <li>No se envía ningún dato a servidores propios, porque no hay servidores propios.</li>
+    <li>No hay servidores propios: el proceso corre en el computador del creador y en GitHub Actions.</li>
     <li>No se usa ningún dato para entrenar modelos ni para publicidad.</li>
   </ul>
 </section>
@@ -82,9 +125,12 @@
   <h2>Cuánto tiempo se guardan</h2>
   <p>
     Los tokens quedan mientras la autorización siga vigente. El creador puede revocarla
-    cuando quiera desde los ajustes de seguridad de su cuenta de TikTok, y además puede
-    borrar los archivos locales, con lo que no queda ninguna copia. El registro de
-    publicaciones solo contiene fechas e identificadores de videos propios.
+    cuando quiera. En TikTok, desde los ajustes de seguridad de su cuenta. En Facebook, desde
+    Configuración y privacidad, Configuración, Apps y sitios web, quitando la app
+    «Publicador CienciaNoEspera». En Instagram y Threads, desde los permisos de apps y sitios
+    web de la propia cuenta. Al revocar, los tokens dejan de funcionar. Además puede borrar los
+    archivos locales y los secretos del repositorio privado, con lo que no queda ninguna copia.
+    El registro de publicaciones solo contiene fechas e identificadores de contenidos propios.
   </p>
 </section>
 
@@ -92,18 +138,21 @@
   <h2>Cómo pedir que se borren</h2>
   <p>
     Como la herramienta no guarda datos de terceros, no hay datos de otras personas que
-    borrar. El dueño de la cuenta revoca el acceso desde los ajustes de TikTok y elimina
-    los archivos locales. Para cualquier consulta sobre esta política, el contacto es
-    <a href="mailto:biohackercl@gmail.com">biohackercl@gmail.com</a>.
+    borrar. Los únicos datos son los de las cuentas propias del creador, descritos arriba.
+    Para pedir el borrado de cualquier dato asociado a esta herramienta, escribir a
+    <a href="mailto:biohackercl@gmail.com">biohackercl@gmail.com</a> con el asunto
+    «Borrado de datos»; se responde y se confirma el borrado en un plazo máximo de 30 días.
+    El dueño de las cuentas también puede revocar el acceso desde los ajustes de cada red,
+    como se explica en la sección anterior, y eliminar los archivos locales.
   </p>
 </section>
 
 <section>
   <h2>Seguridad</h2>
   <p>
-    Las credenciales viven en archivos locales excluidos del control de versiones y nunca
-    se escriben en los registros de ejecución. Las llamadas a la API van siempre por
-    conexión cifrada.
+    Las credenciales viven en archivos locales excluidos del control de versiones y, en la
+    nube, como secretos cifrados de un repositorio privado de GitHub. Nunca se escriben en
+    los registros de ejecución. Las llamadas a las API van siempre por conexión cifrada.
   </p>
 </section>
 
